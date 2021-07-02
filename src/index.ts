@@ -1,12 +1,11 @@
-import express from 'express';
-import privateRouter from './routers/private/index'
+import express from "express";
+import privateRouter from "./routers/private/index";
+import bodyParser from "body-parser";
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.send('hello world');
-})
+app.use("/api/private", privateRouter);
 
-app.use('/private', privateRouter)
-
-app.listen(5001);
+app.listen(8000);

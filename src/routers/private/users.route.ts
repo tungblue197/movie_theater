@@ -1,12 +1,12 @@
-import {Router} from 'express';
-
+import { Router } from "express";
+import UsersController from "../../controllers/users.controller";
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    const { limit, offset, page, text_search } = req.query;
-    res.json({data: req.query });
-});
-
+router
+  .route("/")
+  .get(UsersController.getUsersWithPaging)
+  .post(UsersController.insertUser)
+  .put(UsersController.updateUser);
 
 export default router;
